@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExpensiveProcessor {
 
-    public Object returnSomethingExpensive() {
-        return new Object();
+    public int returnSomethingExpensive() {
+        return 42;
     }
 
 }

@@ -8,7 +8,6 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.Map;
 import java.util.Map.Entry;
 
 final class BeanUtils {
@@ -26,12 +25,11 @@ final class BeanUtils {
      * @return the bean, if found
      */
     static <T> T findBean(Class<T> type, @Nullable String name, ApplicationContext applicationContext) {
-        final Map<String, T> beansOfType = applicationContext.getBeansOfType(type);
+        final var beansOfType = applicationContext.getBeansOfType(type);
         Assert.isTrue(!beansOfType.isEmpty(), () -> "No beans of type " + type);
         final T beanOrProxy;
         if (beansOfType.size() == 1) {
-            beanOrProxy = beansOfType
-                .values()
+            beanOrProxy = beansOfType.values()
                 .iterator()
                 .next();
         } else {
@@ -44,22 +42,17 @@ final class BeanUtils {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No beans of type " + type + " and name " + name));
         }
-        return AopUtils.isAopProxy(beanOrProxy) 
-            ? (T) AopProxyUtils.getSingletonTarget(beanOrProxy) 
-            : beanOrProxy;
+        return AopUtils.isAopProxy(beanOrProxy) ? (T) AopProxyUtils.getSingletonTarget(beanOrProxy) : beanOrProxy;
     }
 
     /**
      * <p>Attempt to find a {@link Field field} on the supplied {@link Class class} with the
      * supplied {@code name} and {@code type} OR just the {@code type} if none with this {@code name} exists.
      * <p>Searches all superclasses up to {@link Object}.
-     * @param clazz
-     * @param name
-     * @param type
      * @return the field, if found.
      */
     static Field findField(Class<?> clazz, @Nullable String name, Class<?> type) {
-        final Object[] results = new Object[2]; //name+type as 0, type only as [1]
+        final var results = new Object[2]; //name+type as 0, type only as [1]
         ReflectionUtils.doWithFields(clazz, field -> {
             if (name != null && field.getName().equalsIgnoreCase(name)) {
                 if (results[0] == null) {

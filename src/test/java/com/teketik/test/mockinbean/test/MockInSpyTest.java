@@ -52,7 +52,7 @@ class MockInSpyTest extends BaseTest {
 
     @Test
     public void testMocked2() {
-        final RuntimeException runtimeException = new RuntimeException();
+        final var runtimeException = new RuntimeException();
         Mockito.doThrow(runtimeException).when(mockableComponent1).doSomething();
         try {
             testComponent1Wrapper.doWith1();

@@ -1,22 +1,18 @@
 package com.teketik.test.mockinbean.test;
 
 import com.teketik.test.mockinbean.SpyInBean;
-import com.teketik.test.mockinbean.SpyInBeans;
 import com.teketik.test.mockinbean.test.components.MockableComponent1;
 import com.teketik.test.mockinbean.test.components.MockableComponent2;
 import com.teketik.test.mockinbean.test.components.TestComponent1;
 import com.teketik.test.mockinbean.test.components.TestComponent2;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
 class SpyInBeanTest extends MockInBeanBaseTest {
 
-    @SpyInBeans({
-        @SpyInBean(TestComponent1.class),
-        @SpyInBean(TestComponent2.class)
-    })
+    @SpyInBean(TestComponent1.class)
+    @SpyInBean(TestComponent2.class)
     private MockableComponent1 mockableComponent1;
 
     @SpyInBean(TestComponent1.class)

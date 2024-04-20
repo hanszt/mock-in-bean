@@ -1,10 +1,10 @@
 package com.teketik.test.mockinbean;
 
-import com.teketik.spring.test.mockito.MockReset;
-import org.mockito.MockSettings;
 import org.mockito.Mockito;
 import org.springframework.core.ResolvableType;
 import org.springframework.util.Assert;
+
+import java.util.Objects;
 
 class SpyDefinition extends Definition {
 
@@ -14,14 +14,14 @@ class SpyDefinition extends Definition {
 
     @Override
     <T> T create(Object originalValue) {
-        Assert.notNull(originalValue, "originalValue must not be null");
-        Assert.isInstanceOf(this.resolvableType.resolve(), originalValue);
+        Objects.requireNonNull(originalValue, "originalValue must not be null");
+        Assert.isInstanceOf(Objects.requireNonNull(resolvableType.resolve()), originalValue);
         Assert.state(!Mockito.mockingDetails(originalValue).isSpy(), "originalValue is already a spy");
-        MockSettings settings = MockReset.withSettings(MockReset.AFTER);
-        settings.name(name);
-        settings.spiedInstance(originalValue);
-        settings.defaultAnswer(Mockito.CALLS_REAL_METHODS);
-        return (T) Mockito.mock(originalValue.getClass(), settings);
+        //noinspection unchecked
+        return (T) Mockito.mock(originalValue.getClass(), Mockito.withSettings()
+                .name(name)
+                .spiedInstance(originalValue)
+                .defaultAnswer(Mockito.CALLS_REAL_METHODS));
     }
 
 }

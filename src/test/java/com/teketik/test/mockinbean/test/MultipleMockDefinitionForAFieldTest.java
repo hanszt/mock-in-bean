@@ -34,12 +34,12 @@ class MultipleMockDefinitionForAFieldTest extends BaseTest {
         }
 
         @Override
-        public void beforeTestMethod(TestContext testContext) throws Exception {
+        public void beforeTestMethod(TestContext testContext) {
             // empty
         }
 
         @Override
-        public void afterTestClass(TestContext testContext) throws Exception {
+        public void afterTestClass(TestContext testContext) {
             // empty
         }
 

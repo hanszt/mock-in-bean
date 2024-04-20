@@ -7,24 +7,29 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Objects;
+
 @SpringTest
-public class MyServiceTest {
+public final class MyServiceTest {
 
-    @MockInBean(MyService.class)
-    private ThirdPartyApiService thirdPartyApiService;
+    @MockInBean(MyService.class) private final ThirdPartyApiService thirdPartyApiService;
+    @SpyInBean(MyService.class) private final ExpensiveProcessor expensiveProcessor;
+    private final MyService myService;
 
-    @SpyInBean(MyService.class)
-    private ExpensiveProcessor expensiveProcessor;
-
-    @Autowired
-    private MyService myService;
-
-    @Test
-    public void test() {
-        final Object somethingExpensive = new Object();
-        Mockito.when(expensiveProcessor.returnSomethingExpensive()).thenReturn(somethingExpensive);
-        myService.doSomething();
-        Mockito.verify(thirdPartyApiService).doSomethingOnThirdPartyApi(somethingExpensive);
+    public MyServiceTest(
+            ThirdPartyApiService thirdPartyApiService,
+            ExpensiveProcessor expensiveProcessor,
+            MyService myService
+    ) {
+        this.thirdPartyApiService = thirdPartyApiService;
+        this.expensiveProcessor = expensiveProcessor;
+        this.myService = myService;
     }
 
+    @Test
+    void test() {
+        Mockito.when(expensiveProcessor.returnSomethingExpensive()).thenReturn(0);
+        myService.doSomething();
+        Mockito.verify(thirdPartyApiService).doSomethingOnThirdPartyApi(0);
+    }
 }

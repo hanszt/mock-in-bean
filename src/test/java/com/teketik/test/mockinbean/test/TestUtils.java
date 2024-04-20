@@ -14,7 +14,7 @@ abstract class TestUtils {
      * @return true if {@code object} is a {@link Mock} (and not a {@link Spy}!!)
      */
     public static boolean isMock(Object object) {
-        final MockingDetails mockingDetails = Mockito.mockingDetails(object);
+        final var mockingDetails = Mockito.mockingDetails(object);
         return mockingDetails.isMock() && !mockingDetails.isSpy();
     }
 

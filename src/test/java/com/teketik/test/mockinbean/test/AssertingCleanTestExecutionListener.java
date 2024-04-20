@@ -16,11 +16,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 class AssertingCleanTestExecutionListener implements TestExecutionListener, Ordered {
 
     @Override
-    public void afterTestClass(TestContext testContext) throws Exception {
-        final AtomicInteger verifiedCounter = new AtomicInteger();
-        final ApplicationContext applicationContext = testContext.getApplicationContext();
-        for (String beanName : applicationContext.getBeanDefinitionNames()) {
-            final Object bean = applicationContext.getBean(beanName);
+    public void afterTestClass(TestContext testContext) {
+        final var verifiedCounter = new AtomicInteger();
+        final var applicationContext = testContext.getApplicationContext();
+        for (var beanName : applicationContext.getBeanDefinitionNames()) {
+            final var bean = applicationContext.getBean(beanName);
             if (bean.getClass().getName().startsWith("com.teketik.test.mockinbean.test.components")) {
                 ReflectionUtils.doWithFields(bean.getClass(), field -> {
                     field.setAccessible(true);

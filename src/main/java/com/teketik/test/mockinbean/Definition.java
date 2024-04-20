@@ -17,7 +17,6 @@ abstract class Definition {
     protected final ResolvableType resolvableType;
 
     Definition(String name, ResolvableType resolvableType) {
-        super();
         this.name = name;
         this.resolvableType = resolvableType;
     }
@@ -32,9 +31,6 @@ abstract class Definition {
 
     /**
      * Creates a mock or a spy of the provided original value.
-     * @param <T>
-     * @param originalValue
-     * @return
      */
     abstract <T> T create(Object originalValue);
 
@@ -54,7 +50,7 @@ abstract class Definition {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Definition other = (Definition) obj;
+        var other = (Definition) obj;
         return Objects.equals(name, other.name) && Objects.equals(resolvableType, other.resolvableType);
     }
 

@@ -1,7 +1,6 @@
 package com.teketik.test.mockinbean.test;
 
 import com.teketik.test.mockinbean.MockInBean;
-import com.teketik.test.mockinbean.MockInBeans;
 import com.teketik.test.mockinbean.test.components.MockableComponent1;
 import com.teketik.test.mockinbean.test.components.TestComponent3;
 import com.teketik.test.mockinbean.test.components.TestComponentOn3;
@@ -12,10 +11,8 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 class MultipleComponentsThroughInheritanceTest extends BaseTest {
 
-    @MockInBeans({
-            @MockInBean(TestComponentOn3.class),
-            @MockInBean(value = TestComponent3.class, name = "testComponent3"),
-    })
+    @MockInBean(TestComponentOn3.class)
+    @MockInBean(value = TestComponent3.class, name = "testComponent3")
     private MockableComponent1 mockableComponent1;
 
     @Autowired

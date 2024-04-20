@@ -28,10 +28,9 @@ class NestedTest extends BaseTest {
 
         @Test
         void resultReturnMockedValue() {
-            final Object somethingExpensive = new Object();
-            Mockito.when(expensiveProcessor.returnSomethingExpensive()).thenReturn(somethingExpensive);
+            Mockito.when(expensiveProcessor.returnSomethingExpensive()).thenReturn(4);
             myService.doSomething();
-            Mockito.verify(thirdPartyApiService).doSomethingOnThirdPartyApi(somethingExpensive);
+            Mockito.verify(thirdPartyApiService).doSomethingOnThirdPartyApi(4);
         }
 
         @Test
@@ -45,7 +44,7 @@ class NestedTest extends BaseTest {
 
             @Test
             void resultReturnMockedValue() {
-                final Object somethingExpensive = new Object();
+                final var somethingExpensive = 10;
                 Mockito.when(expensiveProcessor.returnSomethingExpensive()).thenReturn(somethingExpensive);
                 myService.doSomething();
                 Mockito.verify(thirdPartyApiService).doSomethingOnThirdPartyApi(somethingExpensive);
@@ -59,7 +58,7 @@ class NestedTest extends BaseTest {
 
         @Test
         void resultReturnMockedValue() {
-            final Object somethingExpensive = new Object();
+            final var somethingExpensive = 3;
             Mockito.when(expensiveProcessor.returnSomethingExpensive()).thenReturn(somethingExpensive);
             myService.doSomething();
             Mockito.verify(thirdPartyApiService).doSomethingOnThirdPartyApi(somethingExpensive);
@@ -68,7 +67,7 @@ class NestedTest extends BaseTest {
 
     @Test
     void resultReturnMockedValue() {
-        final Object somethingExpensive = new Object();
+        final var somethingExpensive = 17;
         Mockito.when(expensiveProcessor.returnSomethingExpensive()).thenReturn(somethingExpensive);
         myService.doSomething();
         Mockito.verify(thirdPartyApiService).doSomethingOnThirdPartyApi(somethingExpensive);

@@ -33,7 +33,7 @@ class InBeanDefinitionsParser {
     }
 
     private void parseField(Field element, Class<?> source) {
-        final MergedAnnotations annotations = MergedAnnotations.from(element, SearchStrategy.SUPERCLASS);
+        final var annotations = MergedAnnotations.from(element, SearchStrategy.SUPERCLASS);
         annotations
             .stream(MockInBean.class)
             .map(MergedAnnotation::synthesize)
@@ -45,14 +45,14 @@ class InBeanDefinitionsParser {
     }
 
     private void parseMockInBeanAnnotation(MockInBean annotation, Field field, Class<?> source) {
-        final Set<ResolvableType> typesToMock = getOrDeduceTypes(field, source);
+        final var typesToMock = getOrDeduceTypes(field, source);
         Assert.state(!typesToMock.isEmpty(), () -> "Unable to deduce type to mock from " + field);
-        for (ResolvableType typeToMock : typesToMock) {
+        for (var typeToMock : typesToMock) {
             final Definition definition = new MockDefinition(
                 field.getName(),
                 typeToMock
             );
-            final InBeanDefinition inBeanDefinition = new InBeanDefinition(
+            final var inBeanDefinition = new InBeanDefinition(
                 annotation.value(),
                 ObjectUtils.isEmpty(annotation.name()) ? null : annotation.name()
             );
@@ -61,14 +61,14 @@ class InBeanDefinitionsParser {
     }
 
     private void parseSpyInBeanAnnotation(SpyInBean annotation, Field field, Class<?> source) {
-        final Set<ResolvableType> typesToSpy = getOrDeduceTypes(field, source);
+        final var typesToSpy = getOrDeduceTypes(field, source);
         Assert.state(!typesToSpy.isEmpty(), () -> "Unable to deduce type to spy from " + field);
-        for (ResolvableType typeToSpy : typesToSpy) {
+        for (var typeToSpy : typesToSpy) {
             final Definition definition = new SpyDefinition(
                 field.getName(),
                 typeToSpy
             );
-            final InBeanDefinition inBeanDefinition = new InBeanDefinition(
+            final var inBeanDefinition = new InBeanDefinition(
                 annotation.value(),
                 ObjectUtils.isEmpty(annotation.name()) ? null : annotation.name()
             );
@@ -77,7 +77,7 @@ class InBeanDefinitionsParser {
     }
 
     private void addDefinition(Definition definition, InBeanDefinition inBeanDefinition) {
-        List<InBeanDefinition> inBeanBaseDefinitions = definitions.computeIfAbsent(definition, k -> new LinkedList<>());
+        var inBeanBaseDefinitions = definitions.computeIfAbsent(definition, k -> new LinkedList<>());
         inBeanBaseDefinitions.add(inBeanDefinition);
     }
 

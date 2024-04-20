@@ -21,7 +21,7 @@ class ProxyTest extends BaseTest {
 
     @Test
     public void test() {
-        final AtomicBoolean called = new AtomicBoolean();
+        final var called = new AtomicBoolean();
         Mockito.doAnswer(a -> {
             called.set(true);
             return null;

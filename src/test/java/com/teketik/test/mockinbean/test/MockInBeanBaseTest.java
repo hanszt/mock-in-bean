@@ -24,7 +24,7 @@ abstract class MockInBeanBaseTest extends BaseTest {
 
         @Override
         public void afterTestMethod(TestContext testContext) {
-            final MockInBeanBaseTest baseTest = (MockInBeanBaseTest) testContext.getTestInstance();
+            final var baseTest = (MockInBeanBaseTest) testContext.getTestInstance();
             if (mockableComponent1firstTest == null && mockableComponent2firstTest == null) {
                 mockableComponent1firstTest = baseTest.getMockableComponent1();
                 mockableComponent2firstTest = baseTest.getMockableComponent2();

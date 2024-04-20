@@ -1,10 +1,9 @@
 package com.teketik.test.mockinbean;
 
-import static org.mockito.Mockito.mock;
-
-import com.teketik.spring.test.mockito.MockReset;
-import org.mockito.MockSettings;
+import org.mockito.Mockito;
 import org.springframework.core.ResolvableType;
+
+import static org.mockito.Mockito.mock;
 
 class MockDefinition extends Definition {
 
@@ -14,9 +13,8 @@ class MockDefinition extends Definition {
 
     @Override
     <T> T create(Object originalValue) {
-        MockSettings settings = MockReset.withSettings(MockReset.AFTER);
-        settings.name(name);
-        return (T) mock(resolvableType.resolve(), settings);
+        //noinspection unchecked
+        return (T) mock(resolvableType.resolve(), Mockito.withSettings().name(name));
     }
 
 }
