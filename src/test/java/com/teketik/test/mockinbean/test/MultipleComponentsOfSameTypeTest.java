@@ -6,9 +6,8 @@ import com.teketik.test.mockinbean.test.components.TestComponentWithMultipleSame
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import javax.annotation.Resource;
 
 class MultipleComponentsOfSameTypeTest extends BaseTest {
 
@@ -18,7 +17,7 @@ class MultipleComponentsOfSameTypeTest extends BaseTest {
     @MockInBean(TestComponentWithMultipleSameType.class)
     private MockableComponent1 mockableComponent1b;
 
-    @Resource
+    @Autowired
     private TestComponentWithMultipleSameType testComponentWithMultipleSameTypeDependencies;
 
     @Test

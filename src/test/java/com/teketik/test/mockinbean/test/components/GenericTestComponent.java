@@ -1,13 +1,12 @@
 package com.teketik.test.mockinbean.test.components;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
 
 @Component
 public class GenericTestComponent {
 
-    @Resource
+    @Autowired
     private GenericMockableComponent<String> genericMockableComponent;
 
 }

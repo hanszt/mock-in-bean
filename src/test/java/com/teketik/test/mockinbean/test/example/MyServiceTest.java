@@ -2,13 +2,12 @@ package com.teketik.test.mockinbean.test.example;
 
 import com.teketik.test.mockinbean.MockInBean;
 import com.teketik.test.mockinbean.SpyInBean;
-
+import com.teketik.test.mockinbean.test.SpringTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringTest
 public class MyServiceTest {
 
     @MockInBean(MyService.class)

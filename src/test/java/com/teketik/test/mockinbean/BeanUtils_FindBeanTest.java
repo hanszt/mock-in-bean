@@ -1,15 +1,14 @@
 package com.teketik.test.mockinbean;
 
+import com.teketik.test.mockinbean.test.SpringTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.Resource;
-
-@SpringBootTest(classes = BeanUtils_FindBeanTest.FindBeanTestConfig.class)
+@SpringTest
 class BeanUtils_FindBeanTest {
 
     @Configuration
@@ -36,7 +35,7 @@ class BeanUtils_FindBeanTest {
 
     }
 
-    @Resource
+    @Autowired
     private ApplicationContext applicationContext;
 
     @Test

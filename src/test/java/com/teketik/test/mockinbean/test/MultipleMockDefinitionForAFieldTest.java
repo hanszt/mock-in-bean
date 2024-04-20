@@ -8,10 +8,9 @@ import com.teketik.test.mockinbean.test.components.TestComponent1;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListeners;
-
-import javax.annotation.Resource;
 
 @TestExecutionListeners(
         value = { MultipleMockDefinitionForAFieldTest.TestExecutionListener.class },
@@ -52,7 +51,7 @@ class MultipleMockDefinitionForAFieldTest extends BaseTest {
     @SpyInBean(TestComponent1.class)
     private MockableComponent1 mockableComponent1b;
 
-    @Resource
+    @Autowired
     private TestComponent1 testComponent1;
 
     @Test

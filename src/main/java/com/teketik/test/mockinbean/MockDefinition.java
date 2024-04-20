@@ -2,8 +2,8 @@ package com.teketik.test.mockinbean;
 
 import static org.mockito.Mockito.mock;
 
+import com.teketik.spring.test.mockito.MockReset;
 import org.mockito.MockSettings;
-import org.springframework.boot.test.mock.mockito.MockReset;
 import org.springframework.core.ResolvableType;
 
 class MockDefinition extends Definition {

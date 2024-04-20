@@ -5,8 +5,8 @@ import org.springframework.core.annotation.MergedAnnotation;
 import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.core.annotation.MergedAnnotations.SearchStrategy;
 import org.springframework.util.Assert;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
@@ -20,13 +20,13 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <p>Similar to {@link org.springframework.boot.test.mock.mockito.DefinitionsParser} but handles {@link MockInBean} and {@link SpyInBean}.
+ * <p>Similar to {@link [org.springframework.boot.test.mock.mockito.DefinitionsParser]} but handles {@link MockInBean} and {@link SpyInBean}.
  * <p>Every mock/spy {@link Definition} maps to one or more {@link InBeanDefinition}.
- * @see DefinitionsParser
+ * @see [org.springframework.boot.test.mock.mockito.DefinitionsParser]
  */
 class InBeanDefinitionsParser {
 
-    private final Map<Definition, List<InBeanDefinition>> definitions = new HashMap<Definition, List<InBeanDefinition>>();
+    private final Map<Definition, List<InBeanDefinition>> definitions = new HashMap<>();
 
     void parse(Class<?> source) {
         ReflectionUtils.doWithFields(source, (field) -> parseField(field, source));
@@ -54,7 +54,7 @@ class InBeanDefinitionsParser {
             );
             final InBeanDefinition inBeanDefinition = new InBeanDefinition(
                 annotation.value(),
-                StringUtils.isEmpty(annotation.name()) ? null : annotation.name()
+                ObjectUtils.isEmpty(annotation.name()) ? null : annotation.name()
             );
             addDefinition(definition, inBeanDefinition);
         }
@@ -70,25 +70,20 @@ class InBeanDefinitionsParser {
             );
             final InBeanDefinition inBeanDefinition = new InBeanDefinition(
                 annotation.value(),
-                StringUtils.isEmpty(annotation.name()) ? null : annotation.name()
+                ObjectUtils.isEmpty(annotation.name()) ? null : annotation.name()
             );
             addDefinition(definition, inBeanDefinition);
         }
     }
 
     private void addDefinition(Definition definition, InBeanDefinition inBeanDefinition) {
-        List<InBeanDefinition> inBeanBaseDefinitions = definitions.get(definition);
-        if (inBeanBaseDefinitions == null) {
-            inBeanBaseDefinitions = new LinkedList<InBeanDefinition>();
-            definitions.put(definition, inBeanBaseDefinitions);
-        }
+        List<InBeanDefinition> inBeanBaseDefinitions = definitions.computeIfAbsent(definition, k -> new LinkedList<>());
         inBeanBaseDefinitions.add(inBeanDefinition);
     }
 
     private Set<ResolvableType> getOrDeduceTypes(AnnotatedElement element, Class<?> source) {
         Set<ResolvableType> types = new LinkedHashSet<>();
-        if (types.isEmpty() && element instanceof Field) {
-            Field field = (Field) element;
+        if (element instanceof final Field field) {
             types.add(
                 (field.getGenericType() instanceof TypeVariable)
                     ? ResolvableType.forField(field, source)

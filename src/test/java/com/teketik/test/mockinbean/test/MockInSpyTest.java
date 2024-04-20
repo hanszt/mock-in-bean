@@ -5,23 +5,22 @@ import com.teketik.test.mockinbean.SpyInBean;
 import com.teketik.test.mockinbean.test.MockInSpyTest.Config.TestComponent1Wrapper;
 import com.teketik.test.mockinbean.test.components.MockableComponent1;
 import com.teketik.test.mockinbean.test.components.TestComponent1;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
 
 class MockInSpyTest extends BaseTest {
 
-    @org.springframework.boot.test.context.TestConfiguration
+    @Configurable
     static class Config {
 
         @Component
-        class TestComponent1Wrapper {
+        static class TestComponent1Wrapper {
 
-            @Resource
+            @Autowired
             private TestComponent1 testComponent1;
 
             void doWith1() {
@@ -35,7 +34,7 @@ class MockInSpyTest extends BaseTest {
         }
     }
 
-    @Resource
+    @Autowired
     private TestComponent1Wrapper testComponent1Wrapper;
 
     @SpyInBean(TestComponent1Wrapper.class)

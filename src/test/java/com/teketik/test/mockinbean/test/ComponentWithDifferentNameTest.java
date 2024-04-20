@@ -6,16 +6,15 @@ import com.teketik.test.mockinbean.test.components.TestComponent1;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import javax.annotation.Resource;
 
 class ComponentWithDifferentNameTest extends BaseTest {
 
     @MockInBean(TestComponent1.class)
     private MockableComponent1 differentName;
 
-    @Resource
+    @Autowired
     private TestComponent1 testComponent1;
 
     @Test

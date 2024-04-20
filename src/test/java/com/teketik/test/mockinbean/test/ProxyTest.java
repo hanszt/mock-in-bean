@@ -7,17 +7,16 @@ import com.teketik.test.mockinbean.test.components.MockableComponent1;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import javax.annotation.Resource;
 
 class ProxyTest extends BaseTest {
 
     @MockInBean(InterceptedComponent.class)
     private MockableComponent1 mockableComponent1;
 
-    @Resource
+    @Autowired
     private InterceptedComponent interceptedComponent;
 
     @Test

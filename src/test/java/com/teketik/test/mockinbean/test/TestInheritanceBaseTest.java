@@ -10,9 +10,8 @@ import com.teketik.test.mockinbean.test.components.TestComponent2;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import javax.annotation.Resource;
 
 abstract class TestInheritanceBaseTest extends BaseTest {
 
@@ -25,10 +24,10 @@ abstract class TestInheritanceBaseTest extends BaseTest {
     @SpyInBean(TestComponent1.class)
     protected MockableComponent2 mockableComponent2;
 
-    @Resource
+    @Autowired
     private TestComponent1 testComponent1;
 
-    @Resource
+    @Autowired
     private TestComponent2 testComponent2;
 
     @Test

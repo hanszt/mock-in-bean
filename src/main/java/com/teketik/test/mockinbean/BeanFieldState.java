@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
 
 class BeanFieldState extends FieldState {
 
-    private Object bean;
+    private final Object bean;
 
     public BeanFieldState(Object bean, Field field, Object originalValue, Definition definition) {
         super(field, originalValue, definition);

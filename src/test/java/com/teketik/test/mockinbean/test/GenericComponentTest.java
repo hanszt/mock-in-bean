@@ -6,16 +6,15 @@ import com.teketik.test.mockinbean.test.components.GenericTestComponent;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import javax.annotation.Resource;
 
 class GenericComponentTest extends BaseTest {
 
     @MockInBean(GenericTestComponent.class)
     private GenericMockableComponent<String> genericMockableComponent;
 
-    @Resource
+    @Autowired
     private GenericTestComponent genericTestComponent;
 
     @Test

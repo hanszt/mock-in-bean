@@ -13,9 +13,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
 
 
-@TestExecutionListeners(
-        value = { MockInBeanBaseTest.TestExecutionListener.class }
-)
+@TestExecutionListeners(value = {MockInBeanBaseTest.TestExecutionListener.class})
 abstract class MockInBeanBaseTest extends BaseTest {
 
     static class TestExecutionListener extends AbstractTestExecutionListener {
@@ -25,7 +23,7 @@ abstract class MockInBeanBaseTest extends BaseTest {
         private static boolean multiTestChecked;
 
         @Override
-        public void afterTestMethod(TestContext testContext) throws Exception {
+        public void afterTestMethod(TestContext testContext) {
             final MockInBeanBaseTest baseTest = (MockInBeanBaseTest) testContext.getTestInstance();
             if (mockableComponent1firstTest == null && mockableComponent2firstTest == null) {
                 mockableComponent1firstTest = baseTest.getMockableComponent1();
@@ -38,7 +36,7 @@ abstract class MockInBeanBaseTest extends BaseTest {
         }
 
         @Override
-        public void afterTestClass(TestContext testContext) throws Exception {
+        public void afterTestClass(TestContext testContext) {
             Assertions.assertTrue(multiTestChecked);
         }
     }

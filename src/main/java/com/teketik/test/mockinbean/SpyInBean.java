@@ -1,7 +1,6 @@
 package com.teketik.test.mockinbean;
 
 import org.mockito.Spy;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
@@ -11,7 +10,7 @@ import java.lang.annotation.Target;
 
 /**
  * <p>Annotation used to inject a {@link Spy} of a Spring Bean in another Spring Bean for the duration of a test.
- * <p>This is a convenient alternative to {@link SpyBean @SpyBean} that provides surgical spy injection without dirtying or polluting the Spring context:<br>
+ * <p>This is a convenient alternative to SpyBean that provides surgical spy injection without dirtying or polluting the Spring context:<br>
  * Spys are injected for every test method and the original Spring Beans(s) are re-injected after the test class is done.
  * <hr>
  * <p><strong>Example:</strong><br>
