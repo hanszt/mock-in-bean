@@ -69,11 +69,15 @@ import java.lang.annotation.Target;
 public @interface SpyInBean {
 
     /**
+     * Get the value
+     *
      * @return the {@code class} of the Spring Bean in which you want your {@link Spy} to be injected for the duration of the test.
      */
     Class<?> value();
 
     /**
+     * Get the name
+     *
      * @return the {@code name} of the Spring Bean in which you want your {@link Spy} to be injected for the duration of the test.<br>
      * This is not necessary and is only useful if your context contains multiple Beans of the same type with different names.
      */

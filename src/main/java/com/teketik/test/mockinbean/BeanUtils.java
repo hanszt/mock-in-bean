@@ -19,10 +19,10 @@ final class BeanUtils {
     /**
      * <p>Attempt to find the spring bean corresponding to {@code type} if only one exists ({@code name} not used).
      * If multiple exist for that {@code type}, return the one with the corresponding {@code name}.
-     * @param <T>
-     * @param type
+     * @param <T> the type
+     * @param type the class
      * @param name <i>may be null</i>
-     * @param applicationContext
+     * @param applicationContext the app context
      * @return the bean, if found
      */
     static <T> T findBean(Class<T> type, @Nullable String name, ApplicationContext applicationContext) {

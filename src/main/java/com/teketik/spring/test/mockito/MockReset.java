@@ -1,25 +1,13 @@
 package com.teketik.spring.test.mockito;
 
 import org.mockito.MockSettings;
-import org.mockito.MockingDetails;
 import org.mockito.Mockito;
 import org.mockito.listeners.InvocationListener;
 import org.mockito.listeners.MethodInvocationReport;
-import org.mockito.mock.MockCreationSettings;
 import org.springframework.util.Assert;
-
-import java.util.List;
 
 /**
  * Copied from [org.springframework.boot.test.mock.mockito]
- * <p>
- * Reset strategy used on a mock bean. Usually applied to a mock via the
- * {@link [MockBean] @MockBean} annotation but can also be directly applied to any mock in
- * the {@code ApplicationContext} using the static methods.
- *
- * @author Phillip Webb
- * @see [ResetMocksTestExecutionListener]
- * @since 1.4.0
  */
 public enum MockReset {
 

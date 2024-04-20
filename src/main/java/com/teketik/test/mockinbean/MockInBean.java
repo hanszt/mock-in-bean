@@ -31,13 +31,10 @@ import java.lang.annotation.Target;
  * <pre class="code">
  * &#064;SpringBootTest
  * public class MyServiceTest {
- *
  *     &#064;MockInBean(MyService.class)
  *     private ThirdPartyApi thirdPartyApi;
- *
  *     &#064;Autowired
  *     private MyService myService;
- *
  *     &#064;Test
  *     public void test() {
  *         final Object expected = new Object();
@@ -71,11 +68,15 @@ import java.lang.annotation.Target;
 public @interface MockInBean {
 
     /**
+     * Get the value
+     *
      * @return the {@code class} of the Spring Bean in which you want your {@link Mock} to be injected for the duration of the test.
      */
     Class<?> value();
 
     /**
+     * Get the name
+     *
      * @return the {@code name} of the Spring Bean in which you want your {@link Mock} to be injected for the duration of the test.<br>
      * This is not necessary and is only useful if your context contains multiple Beans of the same type with different names.
      */
